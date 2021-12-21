@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.portfolio.crud_firebase">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
    <application
         android:label="CRUD Firebase"
         android:icon="@mipmap/ic_launcher">

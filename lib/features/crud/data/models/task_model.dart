@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crud_firebase/core/utils/date_formatter.dart';
 import 'package:crud_firebase/features/crud/domain/entities/task.dart';
+import 'package:flutter/material.dart';
 
 class TaskModel extends Task {
   TaskModel({
@@ -30,8 +32,9 @@ class TaskModel extends Task {
     return {
       'name': name,
       'isCompleted': isCompleted,
-      'date': date,
-      'time': time,
+      'date': date ?? DateFormatter().formatDateTime(dateTime: DateTime.now()),
+      'time':
+          time ?? DateFormatter().formatTimeOfDay(timeOfDay: TimeOfDay.now()),
     };
   }
 

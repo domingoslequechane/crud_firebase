@@ -16,7 +16,10 @@ import 'package:crud_firebase/features/crud/domain/usecases/delete_task.dart';
 import 'package:crud_firebase/features/crud/domain/usecases/read_tasks.dart';
 import 'package:crud_firebase/features/crud/domain/usecases/update_task.dart';
 import 'package:crud_firebase/features/crud/presentation/mobx/home/home_store.dart';
+import 'package:crud_firebase/features/crud/presentation/mobx/register/register_store.dart';
 import 'package:crud_firebase/features/crud/presentation/pages/home/home_page.dart';
+import 'package:crud_firebase/features/crud/presentation/pages/launch/launch_page.dart';
+import 'package:crud_firebase/features/crud/presentation/pages/register/register_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AppModule extends Module {
@@ -51,13 +54,32 @@ class AppModule extends Module {
             i.get<DeleteTask>(),
           ),
         ),
+        Bind(
+          (i) => RegisterStore(
+            i.get<CreateTask>(),
+            i.get<UpdateTask>(),
+            i.get<DeleteTask>(),
+          ),
+        ),
       ];
 
   @override
   final List<ModularRoute> routes = [
     ChildRoute(
-      Modular.initialRoute,
+      '/',
+      child: (context, args) => const LaunchPage(),
+      transition: TransitionType.rightToLeft,
+    ),
+    ChildRoute(
+      '/home',
       child: (context, args) => const HomePage(),
+      transition: TransitionType.rightToLeft,
+    ),
+    ChildRoute(
+      '/register',
+      child: (context, args) => RegisterPage(
+        taskModel: args.data,
+      ),
       transition: TransitionType.rightToLeft,
     ),
   ];
