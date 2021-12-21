@@ -1,5 +1,5 @@
 import 'package:crud_firebase/features/crud/data/models/task_model.dart';
 
-abstract class DeleteTodoRepository {
+abstract class DeleteTaskRepository {
   Future<void> delete({required TaskModel taskModel});
 }

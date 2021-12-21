@@ -7,16 +7,17 @@ abstract class ReadTasksDataSource {
 }
 
 class ReadTasksDataSourceImpl implements ReadTasksDataSource {
-  final CollectionReference _reference;
+  final FirebaseFirestore _instance;
 
-  ReadTasksDataSourceImpl(this._reference);
+  ReadTasksDataSourceImpl(this._instance);
 
   @override
   Stream<List<TaskModel>> read() {
     try {
-      return _reference.snapshots().map((snapshot) => snapshot.docs
-          .map((document) => TaskModel.fromJson(document))
-          .toList());
+      return _instance.collection('todos').snapshots().map((snapshot) =>
+          snapshot.docs
+              .map((document) => TaskModel.fromJson(document))
+              .toList());
     } catch (e) {
       throw ServerException();
     }

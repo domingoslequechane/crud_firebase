@@ -4,7 +4,7 @@ import 'package:crud_firebase/features/crud/data/datasources/delete_task_data_so
 import 'package:crud_firebase/features/crud/data/models/task_model.dart';
 import 'package:crud_firebase/features/crud/domain/repositories/delete_task_repository.dart';
 
-class DeleteTaskRepositoryImpl implements DeleteTodoRepository {
+class DeleteTaskRepositoryImpl implements DeleteTaskRepository {
   final DeleteTaskDataSource deleteTaskDataSource;
 
   DeleteTaskRepositoryImpl(this.deleteTaskDataSource);

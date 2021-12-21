@@ -7,14 +7,14 @@ abstract class CreateTaskDataSource {
 }
 
 class CreateTaskDataSourceImpl implements CreateTaskDataSource {
-  final CollectionReference _reference;
+  final FirebaseFirestore _instance;
 
-  CreateTaskDataSourceImpl(this._reference);
+  CreateTaskDataSourceImpl(this._instance);
 
   @override
   Future<DocumentReference> create({required TaskModel taskModel}) {
     if (taskModel.uid == null) {
-      return _reference.add(taskModel.toJson());
+      return _instance.collection('todos').add(taskModel.toJson());
     } else {
       throw ServerException();
     }

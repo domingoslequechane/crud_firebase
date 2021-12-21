@@ -6,15 +6,15 @@ abstract class DeleteTaskDataSource {
   Future<void> delete({required TaskModel taskModel});
 }
 
-class DeleteTaskDataSourceiImpl implements DeleteTaskDataSource {
-  final CollectionReference _reference;
+class DeleteTaskDataSourceImpl implements DeleteTaskDataSource {
+  final FirebaseFirestore _instance;
 
-  DeleteTaskDataSourceiImpl(this._reference);
+  DeleteTaskDataSourceImpl(this._instance);
 
   @override
   Future<void> delete({required TaskModel taskModel}) {
     if (taskModel.uid != null) {
-      return _reference.doc(taskModel.uid).delete();
+      return _instance.collection('todos').doc(taskModel.uid).delete();
     } else {
       throw ServerException();
     }

@@ -7,14 +7,17 @@ abstract class UpdateTaskDataSource {
 }
 
 class UpdateTaskDataSourceImpl implements UpdateTaskDataSource {
-  final CollectionReference _reference;
+  final FirebaseFirestore _instance;
 
-  UpdateTaskDataSourceImpl(this._reference);
+  UpdateTaskDataSourceImpl(this._instance);
 
   @override
   Future<void> update({required TaskModel taskModel}) {
     if (taskModel.uid != null) {
-      return _reference.doc(taskModel.uid).update(taskModel.toJson());
+      return _instance
+          .collection('todos')
+          .doc(taskModel.uid)
+          .update(taskModel.toJson());
     } else {
       throw ServerException();
     }
