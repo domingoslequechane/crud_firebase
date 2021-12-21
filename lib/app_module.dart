@@ -15,6 +15,8 @@ import 'package:crud_firebase/features/crud/domain/usecases/create_task.dart';
 import 'package:crud_firebase/features/crud/domain/usecases/delete_task.dart';
 import 'package:crud_firebase/features/crud/domain/usecases/read_tasks.dart';
 import 'package:crud_firebase/features/crud/domain/usecases/update_task.dart';
+import 'package:crud_firebase/features/crud/presentation/mobx/home/home_store.dart';
+import 'package:crud_firebase/features/crud/presentation/pages/home/home_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AppModule extends Module {
@@ -42,8 +44,21 @@ class AppModule extends Module {
         Bind((i) => DeleteTask(i.get<DeleteTaskRepository>())),
 
         // Store
+        Bind(
+          (i) => HomeStore(
+            i.get<ReadTasks>(),
+            i.get<UpdateTask>(),
+            i.get<DeleteTask>(),
+          ),
+        ),
       ];
 
   @override
-  final List<ModularRoute> routes = [];
+  final List<ModularRoute> routes = [
+    ChildRoute(
+      Modular.initialRoute,
+      child: (context, args) => const HomePage(),
+      transition: TransitionType.rightToLeft,
+    ),
+  ];
 }
