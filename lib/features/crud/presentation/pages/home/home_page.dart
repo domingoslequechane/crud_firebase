@@ -79,7 +79,7 @@ Widget _buildList({
               );
               store.update(taskModel: newTaskModel);
             },
-            onDismissed: (_) {
+            onPressedDeleteTask: () {
               store.delete(taskModel: _taskModel);
             },
             onTap: () {
