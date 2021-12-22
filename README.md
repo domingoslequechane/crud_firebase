@@ -13,7 +13,6 @@ Implementing simple storage operations, CRUD (Create, Read, Update, Delete), usi
   <img width="200" src="https://github.com/luciano01/crud_firebase/blob/master/assets/screenshots/Empty.png">
   <img width="200" src="https://github.com/luciano01/crud_firebase/blob/master/assets/screenshots/Home.png"> 
   <img width="200" src="https://github.com/luciano01/crud_firebase/blob/master/assets/screenshots/Create.png"> 
-  <img width="200" src="https://github.com/luciano01/crud_firebase/blob/master/assets/screenshots/Create.png"> 
   <img width="200" src="https://github.com/luciano01/crud_firebase/blob/master/assets/screenshots/Update.png">
 </p>
 
